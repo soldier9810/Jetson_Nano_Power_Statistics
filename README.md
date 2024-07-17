@@ -1,2 +1,6 @@
 # Jetson_Nano_Power_Statistics
-This repository contains power statistics of NVIDIA's Jetson Nano while training face recognition model and also inferencing. I used the jtop library to collect the data and to control the active CPU cores, CPU frequency and GPU frequency I edited the nvpmodel.conf file found at /etc/nvpmodel.conf. 
+This repository contains power statistics of NVIDIA's Jetson Nano while training face recognition model and also inferencing. I used the jtop library to collect the data and to control the active CPU cores, CPU frequency and GPU frequency I edited the nvpmodel.conf file found at /etc/nvpmodel.conf.
+
+By default Jetson Nano comes with two power modes called MAXN and 5W. You can check their details here https://docs.nvidia.com/jetson/archives/l4t-archived/l4t-3275/index.html#page/Tegra%20Linux%20Driver%20Package%20Development%20Guide/power_management_nano.html. I added 3 more modes: CPU1GPU0 (1 CPU core active and GPU frequency set to minimum), CPU1GPU1(1 CPU core active and GPU frequency set to maximum) and CPU4GPU0 (All CPU cores active and GPU frequency set to minimum). The MAXN mode has all CPU cores active and GPU frequency at maximum. 5W mode has 2 CPU cores active and GPU frequency is a bit reduced.
+
+This study was conducted to see if we can save power on resource constrained devices by switching off CPU cores or reducing GPU frequency without having much of an effect on machine learning training and inferencing performance. 
